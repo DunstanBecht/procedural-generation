@@ -12,9 +12,9 @@ from omni.isaac.kit import SimulationApp
 from worldcreator import factory
 from worldcreator import representation
 
-repo = "/home/gpu_user/.local/share/ov/pkg/isaac_sim-2021.2.0/standalone_examples/python_samples/CS8903"
+repo = "/home/gpu_user/.local/share/ov/pkg/isaac_sim-2021.2.0/standalone_examples/python_samples/procedural-generation"
 
-world = "lake" # "lake"
+world = "husky" # "lake"
 
 # convert the STL ground zones into USD files
 
@@ -36,14 +36,21 @@ trees = representation.load(f"{repo}/data/json/{world}/forest.json")
 
 sky = representation.AtomicObject(
     name='sky',
-    usd='',
+    usd='Dynamic/CumulusLight.usd',
+)
+
+# create a water plane 
+
+water = representation.AtomicObject(
+    name='water',
+    usd='waterplane.usd',
 )
 
 # assemble the features in a nex composed object
 
 world_object = representation.ComposedObject(
     name='environment',
-    components=[trees, ground],
+    components=[trees, ground, sky, water],
 )
 
 # export the composed object representing the environment

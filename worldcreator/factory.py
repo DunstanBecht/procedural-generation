@@ -135,7 +135,7 @@ class ForestBuilder(Builder):
                 y=y,
                 z=z,
                 r=1,
-                #usd=self.usds[rng.integers(len(self.usds))],
+                usd=self.usds[np.random.randint(len(self.usds))],
             )
             repulsion_t = representation.normalize(np.where(m, rasterization.repulsion(t), 0))
             repulsion_trees = (repulsion_trees*(i-1) + repulsion_t)/i
@@ -375,7 +375,7 @@ class HuskyGround(GroundBuilder):
         N_threads = 4
 
         perlin0 = fns.Noise(seed=self.seed, numWorkers=N_threads)
-        perlin0.frequency = 1 / 100
+        perlin0.frequency = max(rasterization.l_x, rasterization.l_y)/10000
         perlin0.noiseType = fns.NoiseType.Perlin
         perlin0.fractal.octaves = 16
         perlin0.fractal.lacunarity = 2.0
@@ -383,7 +383,7 @@ class HuskyGround(GroundBuilder):
         perlin0.perturb.perturbType = fns.PerturbType.NoPerturb
 
         perlin01 = fns.Noise(seed=self.seed, numWorkers=N_threads)
-        perlin01.frequency = 1 / 100
+        perlin01.frequency = max(rasterization.l_x, rasterization.l_y)/20000
         perlin01.noiseType = fns.NoiseType.Perlin
         perlin01.fractal.octaves = 16
         perlin01.fractal.lacunarity = 2.0
@@ -399,7 +399,7 @@ class HuskyGround(GroundBuilder):
 
         p = np.percentile(m1, 30)
         m1 -= p
-        m1 *= 40
+        m1 *= 10*rasterization.p_m
 
         m1label = (m1 < 0).astype(np.int8)
         labels = cv2.connectedComponents(m1label)

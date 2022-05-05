@@ -35,13 +35,13 @@ def put(
             createObject(
                 n+'/'+a.name,
                 s,
-                os.path.join(p, p2, a.usd),
+                os.path.join(p, p2, a.prefix, a.usd),
                 False,
                 position=Gf.Vec3d(a.x*100, a.y*100, a.z*100),
             )
         if isinstance(a, ComposedObject):
             for b in a:
-                rec(b, "/"+a.name, a.prefix)
+                rec(b, n+"/"+a.name, a.prefix)
     rec(o)
 
 def CreateBasicMaterial(

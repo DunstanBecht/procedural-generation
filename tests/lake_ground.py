@@ -21,8 +21,8 @@ rasterization = representation.Rasterization(
     p_m=10, # resolution of the map
 )
 
-heightmap = np.load('../data/npy/lake/dem.npz')['data']
-#heightmap = np.load('/home/gpu_user/Documents/isaac-custom-code/raw_generation/gen0/dem.npz')['data']
+#heightmap = np.load('../data/npy/lake/dem.npz')['data']
+heightmap = np.load('/home/gpu_user/Documents/isaac-custom-code/raw_generation/gen0/dem.npz')['data']
 mask_forest = heightmap > 2
 mask_lake = heightmap < 2
 

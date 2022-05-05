@@ -16,9 +16,9 @@ from worldcreator import converters
 # define a projection of the scene
 
 rasterization = representation.Rasterization(
-    l_x=200, # size of the map
-    l_y=200, # size of the map
-    p_m=1, # resolution of the map
+    l_x=200, # size of the map in meter
+    l_y=200, # size of the map in meter
+    p_m=10, # resolution of the map: pixels per meter
 )
 
 # instantiate a ground builder
@@ -36,7 +36,7 @@ matrices = ground_builder.matrices(
 # export the matrices
 
 for name, matrix in matrices.items():
-    if worldcreator.USE_GPU:
+    if USE_GPU:
         matrix = np.asnumpy(matrix)
     converters.ndarray_to_png(matrix, name, '../data/png/husky')
     converters.ndarray_to_npy(matrix, name, '../data/npy/husky')

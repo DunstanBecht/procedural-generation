@@ -19,7 +19,7 @@ from worldcreator import converters
 rasterization = representation.Rasterization(
     l_x=200, # size of the map
     l_y=200, # size of the map
-    p_m=1, # resolution of the map
+    p_m=10, # resolution of the map
 )
 
 # retrieve the heightmap and the forest mask
@@ -30,7 +30,7 @@ forest_mask = np.load('../data/npy/husky/forest.npy')
 # instantiate a forest builder
 
 forest_builder = factory.ForestBuilder(
-    d=0.01,
+    d=0.03,
     n=100,
     seed=19,
     usds=[f'American_Beech.usd'],

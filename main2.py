@@ -11,9 +11,9 @@ from omni.isaac.kit import SimulationApp
 from worldcreator import factory
 from worldcreator import representation
 
-repo = "/home/gpu_user/.local/share/ov/pkg/isaac_sim-2021.2.0/standalone_examples/python_samples/CS8903"
+repo = "/home/gpu_user/.local/share/ov/pkg/isaac_sim-2021.2.0/standalone_examples/python_samples/procedural-generation"
 
-world = "lake" # "lake"
+world = "husky" # "lake"
 
 # load the composed object representing the world
 
@@ -37,6 +37,8 @@ stage = omni.usd.get_context().get_stage()
 nucleus = get_nucleus_server()
 
 world_object['trees'].prefix = os.path.join(nucleus, "NVIDIA/Assets/Vegetation/Trees")
+world_object['sky'].prefix = os.path.join(nucleus, "NVIDIA/Assets/Skies")
+world_object['water'].prefix = os.path.join(nucleus, "LakeSimulation/lake_beds/")
 
 put(world_object, stage)
 
